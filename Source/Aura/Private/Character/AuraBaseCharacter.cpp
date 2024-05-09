@@ -3,6 +3,7 @@
 
 #include "Character/AuraBaseCharacter.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
@@ -44,6 +45,14 @@ void AAuraBaseCharacter::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> Gameplay
 	ContextHandle.AddSourceObject(this);
 	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+}
+
+void AAuraBaseCharacter::AddCharacterAbilities()
+{
+	UAuraAbilitySystemComponent* AuraASC = CastChecked<UAuraAbilitySystemComponent>(AbilitySystemComponent);
+	if (!HasAuthority()) return;
+
+	AuraASC->AddCharacterAbilities(StartupAbilities);
 }
 
 
