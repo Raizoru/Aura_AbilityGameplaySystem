@@ -43,7 +43,7 @@ class AURA_API UAuraWidgetController : public UObject
 public:
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
-	virtual void BroadCastIntialValues();
+	virtual void BroadCastInitialValues();
 	virtual void BindCallbacksToDependencies();
 
 protected:
