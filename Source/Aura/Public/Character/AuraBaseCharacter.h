@@ -14,7 +14,7 @@ class UGameplayEffect;
 class UGameplayAbility;
 class UAnimMontage;
 
-UCLASS(Abstract)
+UCLASS(Abstract) 
 class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInterface, public ICombatInterface
 {
 	GENERATED_BODY()
@@ -25,6 +25,10 @@ public:
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die() override;
+
+	UFUNCTION(NetMulticast, Reliable)
+	virtual void MulticastHandleDeath();
 
 protected:
 	virtual void BeginPlay() override;
