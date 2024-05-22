@@ -7,6 +7,7 @@
 #include "GameplayTagContainer.h"
 #include "OverlayWidgetController.generated.h"
 
+class UAuraAbilitySystemComponent;
 class UAuraUserWidget;
 class UAbilityInfo;
 
@@ -70,6 +71,8 @@ protected:
 
 	 template<typename T>
 	 T* GetDataTableRowByTag(UDataTable* DataTable, const FGameplayTag& Tag);
+
+	 void OnInitializeStartupAbilities(UAuraAbilitySystemComponent* AuraAbilitySystemComponent);
 };
 
 template<typename T>
