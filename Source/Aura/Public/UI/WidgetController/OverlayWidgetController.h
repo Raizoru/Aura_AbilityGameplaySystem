@@ -11,6 +11,7 @@ class UAuraAbilitySystemComponent;
 class UAuraUserWidget;
 class UAbilityInfo;
 
+struct FAuraAbilityInfo;
 USTRUCT(BlueprintType)
 struct FUIWidget : public FTableRowBase
 {
@@ -31,12 +32,14 @@ struct FUIWidget : public FTableRowBase
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeChangedSignature, float, NewValue);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FMessageWidgetRowSignature, FUIWidget, Row);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAbilityInfoSignature, const FAuraAbilityInfo&, Info);
 
 struct FOnAttributeChangeData;
 
 /**
  * 
  */
+
 UCLASS(BlueprintType, Blueprintable)
 class AURA_API UOverlayWidgetController : public UAuraWidgetController
 {
@@ -60,6 +63,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FMessageWidgetRowSignature MessageWidgetRowDelegate;
+
+	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
+	FAbilityInfoSignature AbilityInfoDelegate;
 
 protected:
 
