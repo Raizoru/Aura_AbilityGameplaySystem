@@ -56,8 +56,10 @@ public:
 	FGameplayTag Abilities_Summon;
 
 	FGameplayTag Abilities_Fire_FireBolt;
+	FGameplayTag Abilities_Dark_DarkMatter;
 
 	FGameplayTag Cooldown_Fire_FireBolt;
+	FGameplayTag Cooldown_Dark_DarkMatter;
 
 	FGameplayTag CombatSocket_Weapon;
 	FGameplayTag CombatSocket_RightHand;

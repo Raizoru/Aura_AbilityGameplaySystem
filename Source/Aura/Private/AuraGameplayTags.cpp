@@ -203,6 +203,11 @@ void FAuraGameplayTags::InitialiseNativeGameplayTags()
 		FString("FireBolt Ability Tag")
 	);
 
+	GameplayTags.Abilities_Dark_DarkMatter = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Abilities.Dark.DarkMatter"),
+		FString("DarkMatter Ability Tag")
+	);
+
 	/*
 	* Cooldown
 	*/
@@ -210,6 +215,11 @@ void FAuraGameplayTags::InitialiseNativeGameplayTags()
 	GameplayTags.Cooldown_Fire_FireBolt = UGameplayTagsManager::Get().AddNativeGameplayTag(
 		FName("Cooldown.Fire.FireBolt"),
 		FString("FireBolt Cooldown Tag")
+	);
+
+	GameplayTags.Cooldown_Dark_DarkMatter = UGameplayTagsManager::Get().AddNativeGameplayTag(
+		FName("Cooldown.Dark.DarKMatter"),
+		FString("DarKMatter Cooldown Tag")
 	);
 
 	/*
