@@ -37,6 +37,7 @@ AAuraCharacter::AAuraCharacter()
 	LevelUpNiagaraComponent->bAutoActivate = false;
 
 	CharacterClass = ECharacterClass::Elementalist;
+
 }
 
 

@@ -6,6 +6,7 @@
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Component/AutoRunComponent.h"
 #include <Aura/Aura.h>
 #include "Kismet/GameplayStatics.h"
 
@@ -23,6 +24,8 @@ AAuraBaseCharacter::AAuraBaseCharacter()
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon");
 	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	
 }
 
 UAbilitySystemComponent* AAuraBaseCharacter::GetAbilitySystemComponent() const
@@ -61,6 +64,11 @@ void AAuraBaseCharacter::MulticastHandleDeath_Implementation()
 void AAuraBaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Hello, from AuraBaseCharacter::BeginPlay"));
+	}
 }
 
 FVector AAuraBaseCharacter::GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag)

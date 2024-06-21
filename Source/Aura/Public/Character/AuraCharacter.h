@@ -10,7 +10,7 @@
 class UNiagaraComponent;
 class UCameraComponent;
 class USpringArmComponent;
-
+class UAutoRunComponent;
 
 /**
  * 
@@ -54,6 +54,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USpringArmComponent> CameraBoom;
+
+
 
 	UFUNCTION(NetMulticast, Reliable)
 	void MulticastLevelUpParticles() const;
