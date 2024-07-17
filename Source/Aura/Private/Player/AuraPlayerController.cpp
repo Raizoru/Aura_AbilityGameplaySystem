@@ -13,6 +13,7 @@
 #include <NavigationSystem.h>
 #include "GameFramework/Character.h"
 #include "UI/Widget/DamageTextComponent.h"
+#include "Component/AutoRunComponent.h"
 
 
 AAuraPlayerController::AAuraPlayerController()
@@ -138,37 +139,8 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_RMB))
-	{
-		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
-		return;
-	}
-	
-	//if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
-
-	if (!bTargeting && !bShiftKeyDown)
-	{
-		const APawn* ControlledPawn = GetPawn();
-		if (FollowTime <= ShortPressedThreshold)
-		{
-			if (UNavigationPath* NavPath = UNavigationSystemV1::FindPathToLocationSynchronously(this, ControlledPawn->GetActorLocation(), CachedDestination))
-			{
-				Spline->ClearSplinePoints();
-				for (const FVector& PointLoc : NavPath->PathPoints)
-				{
-					Spline->AddSplinePoint(PointLoc, ESplineCoordinateSpace::World);
-					//DrawDebugSphere(GetWorld(), PointLoc, 8.f, 8, FColor::Green, false, 5.f);
-				}
-				if (NavPath->PathPoints.Num() > 0)
-				{
-					CachedDestination = NavPath->PathPoints[NavPath->PathPoints.Num() - 1];
-					bAutoRunning = true;
-				}
-			}
-		}
-		FollowTime = 0.f;
-		bTargeting = false;
-	}
+	UAutoRunComponent* AutoRunComp = GetPawn()->FindComponentByClass<UAutoRunComponent>();
+	AutoRunComp->Run();
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)

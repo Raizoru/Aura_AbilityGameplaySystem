@@ -32,6 +32,8 @@ public:
 
 	UFUNCTION(Client, Reliable)
 	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter, bool bBlockedHit, bool bCriticalHit);
+	
+	FVector CachedDestination = FVector::ZeroVector;
 
 protected:
 	virtual void BeginPlay() override;
@@ -71,7 +73,7 @@ private:
 
 	UAuraAbilitySystemComponent* GetASC();
 
-	FVector CachedDestination = FVector::ZeroVector;
+	
 	float FollowTime = 0.f;
 	float ShortPressedThreshold = 0.5f;
 	bool bAutoRunning = false;
